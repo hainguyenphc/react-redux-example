@@ -1,13 +1,14 @@
 import './App.css';
-
+import { composeWithDevTools } from '@redux-devtools/extension';
 import { Provider } from "react-redux";
-import { createStore } from 'redux';
-import SongList from './components/SongList';
-import rootReducer from './redux/rootReducer';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 import CakeContainer from './components/CakeContainer';
+import SongList from './components/SongList';
 import UsersContainer from './components/UsersContainer';
+import rootReducer from './redux/rootReducer';
 
-const store = createStore(rootReducer,);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 function App() {
   return <Provider store={store}>
